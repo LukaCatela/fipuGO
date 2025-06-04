@@ -1,0 +1,3 @@
+<template>
+    Pulaaa
+</template>
