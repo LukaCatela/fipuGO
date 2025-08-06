@@ -1,6 +1,6 @@
 <template>
   <div>
-    <footer class="bg-gray-800 text-white py-8 px-4 mt-10">
+    <footer class="bg-gray-800 text-white py-8 px-4">
       <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         
         <!-- O nama sekcija footera -->

@@ -1,24 +1,38 @@
 <template>
-  <div>
-    <!-- Navigacijska traka -->
-    <div class="bg-gray-800 p-10 text-amber-400 flex items-center relative">
-      <nav class="absolute left-1/2 transform -translate-x-1/2 space-x-4">
+  <div class="bg-gray-800 p-6 text-amber-400 flex items-center relative">
+    
+    <!-- Navigacijski linkovi u centru -->
+    <nav class="absolute left-1/2 transform -translate-x-1/2 flex space-x-6">
+      <RouterLink to="/" class="hover:text-amber-200">Home Page</RouterLink>
+      <RouterLink to="/javniprijevoz" class="hover:text-amber-200">Javni Prijevoz</RouterLink>
+    </nav>
 
-        <RouterLink to="/" class="hover:underline">HomePage</RouterLink>
-        <RouterLink to="/javniprijevoz" class="hover:underline">Javni Prijevoz</RouterLink>
-
-      </nav>
-      <div class="ml-auto">
-        <RouterLink to="/register" class="hover:underline">Register</RouterLink>
-
-        <span> / </span>
-
-        <RouterLink to="/login" class="hover:underline">Log In</RouterLink>
+    <!-- Desna strana: Signup / Login / Logout -->
+    <div class="ml-auto">
+      <div class="flex items-center space-x-6">
+        <template v-if="!store.currentUser.value">
+          <RouterLink to="/register" class="hover:text-amber-200">Signup</RouterLink>
+          <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
+        </template>
+        <template v-else>
+          <span>Dobro došao, {{ store.currentUser.value }}</span>
+          <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
+        </template>
       </div>
     </div>
+
   </div>
 </template>
 
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
+import router from '@/router';
+import store from '@/store';
+import { RouterLink } from 'vue-router'
+import { auth } from '@/firebase';
+
+ function logOut() {
+      auth.signOut().then(() => {
+        router.push("/login")
+      });
+}
 </script>

@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from '@/views/HomeView.vue'
-import PrijevozPula from "@/views/PrijevozPula.vue";
 import RegisterView from "@/views/RegisterView.vue";
 import LogInView from "@/views/LogInView.vue";
+import JavniPrijevoz from "@/views/JavniPrijevoz.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -19,7 +19,7 @@ const router = createRouter({
         {
             path: '/javniprijevoz',
             name: 'javniPrijevoz',
-            component:PrijevozPula,
+            component:JavniPrijevoz,
         },
         {
             path: '/register',
