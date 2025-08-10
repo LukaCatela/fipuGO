@@ -4,13 +4,7 @@
     import BodyFipuGo from '@/components/BodyFipuGo.vue';
 </script>
 <template>
-  <div class="flex flex-col min-h-screen">
-    <Header/>
-
-    <div class="flex-1 flex justify-center">
-      <BodyFipuGo/>
-    </div>
-
-    <Footer/>
-  </div>
+  <Header class="flex flex-col"/>
+  <BodyFipuGo class=" min-h-screen min-w-screen items-top"/>
+  <Footer/>
 </template>
