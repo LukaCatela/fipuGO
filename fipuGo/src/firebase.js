@@ -6,7 +6,8 @@ import { getAuth } from 'firebase/auth';
 // ubacuješ svoj ključ koji dobiješ kad kreiraš firebase projekt: apiKey,authDomain...
 const firebaseConfig = {
 
-}
+};
+
 
 
 // inicializiramo app i autentikaciju
