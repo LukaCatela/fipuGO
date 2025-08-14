@@ -5,12 +5,7 @@ import { getAuth } from 'firebase/auth';
 
 // ubacuješ svoj ključ koji dobiješ kad kreiraš firebase projekt: apiKey,authDomain...
 const firebaseConfig = {
-  apiKey: "AIzaSyD5DtxEYaGMNaGrz55zjAa98XUL46yeld8",
-  authDomain: "test-fipugo.firebaseapp.com",
-  projectId: "test-fipugo",
-  storageBucket: "test-fipugo.firebasestorage.app",
-  messagingSenderId: "983942413539",
-  appId: "1:983942413539:web:e5c35865f1481a757659d6"
+
 };
 
 // inicializiramo app i autentikaciju
