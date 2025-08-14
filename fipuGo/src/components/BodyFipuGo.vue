@@ -4,7 +4,7 @@ import { RouterLink, RouterView, useRoute } from 'vue-router'
 const route = useRoute()
 </script>
 <template>
-  <div class="bg-blue-100">
+  <div class="w-full px-4 sm:px-6 lg:px-8">
     <div v-if="route.path === '/javniprijevoz'">
       <RouterLink to="/javniprijevoz"></RouterLink>
     </div>
