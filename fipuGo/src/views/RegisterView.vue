@@ -16,7 +16,6 @@
 import { ref } from 'vue';
 import { auth } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { errorMessages } from 'vue/compiler-sfc';
 
     const username = ref("");
     const password = ref("");

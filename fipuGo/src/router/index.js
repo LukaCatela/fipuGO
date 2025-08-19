@@ -13,12 +13,12 @@ const router = createRouter({
         },
         {
             path: '/home',
-            name: 'home',
+            name: 'redirecthome',
             redirect: "/",
         },
         {
             path: '/homepage',
-            name: 'homepage',
+            name: 'redirecthomepage',
             redirect: "/",
         },
         {
@@ -30,6 +30,10 @@ const router = createRouter({
             path: '/register',
             name: 'Registracija',
             component:RegisterView,
+        },
+        {
+            path: '/signup',
+            redirect: '/register'
         },
         {
             path: '/login',
