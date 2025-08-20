@@ -99,11 +99,12 @@ onMounted(async ()=>{
                 const feature = e.features[0]; 
                 const coordinates = feature.geometry.coordinates.slice(); 
                 const stationName = feature.properties.Name || 'Naziv nije dostupan'; 
+                const contentPopup = `<strong> ${stationName}</strong>`;
                 while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) { 
                     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360; } 
                     new maplibregl.Popup() 
                     .setLngLat(coordinates) 
-                    .setHTML(stationName) 
+                    .setHTML(contentPopup) 
                     .addTo(map); 
             } 
         });  

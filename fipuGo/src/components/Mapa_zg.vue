@@ -1,3 +1,106 @@
 <template>
-    Zagreb
+    <div class="h-full w-full flex flex-col gap-2 p-2">
+        <div id="map" class="flex-1 w-full"></div>
+
+        <!--Kontrole layera-->
+        <div class="mt-2 space-x-2">
+            <button @click="sakrijLayer('bus-stops-layer')" class="px-4 py-2 bg-amber-100 text-black font-semibold rounded-lg shadow-mds hover:bg-amber-300">Stanice</button>
+        </div>
+
+    </div>
 </template>
+
+<script setup>
+import { onMounted } from 'vue';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+
+let map // globalna varijabla dostupna i unutar toggleLayer
+
+function sakrijLayer(layerId) {
+  if (!map.getLayer(layerId)) return // ako sloj ne postoji, prekini
+
+  const visibility = map.getLayoutProperty(layerId, 'visibility')
+
+  if (visibility === 'none' || !visibility) {
+    map.setLayoutProperty(layerId, 'visibility', 'visible')
+  } else {
+    map.setLayoutProperty(layerId, 'visibility', 'none')
+  }
+};
+
+
+onMounted(async ()=>{
+// setupiranje mape
+
+    map = new maplibregl.Map({
+        container: 'map',
+        style: 'https://tiles.openfreemap.org/styles/liberty', // openstreetmap
+        center: [15.982, 45.805], // Koordinate centra Zagreba
+        zoom: 13,
+        maxZoom: 20,
+        hash: true,
+        maxBounds: [
+            [15.76, 45.62],  // Donji lijevi kut
+            [16.25, 45.95]   // Gornji desni kut
+        ],
+    });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+
+    map.on('load', async() => {
+        const responseStanice = await fetch('/data/autobusna_stajalista_zagreb.json'); //dodat putanju
+        const jsonDataStanice = await responseStanice.json();
+
+        jsonDataStanice.features.forEach(feature => {
+            if(feature.geometry.type === 'Point' && feature.properties) {
+                const lon = feature.properties.X;
+                const lat = feature.properties.Y;
+                feature.geometry.coordinates = [lon,lat];
+            }
+        });
+
+        map.addSource('autobusna_stajalista_zagreb', {type: 'geojson', data: jsonDataStanice});
+
+        // Stanice
+        map.addLayer({
+        id: 'bus-stops-layer',
+        type: 'circle',
+        source: 'autobusna_stajalista_zagreb',
+        paint: {
+            'circle-radius': 3,
+            'circle-color': '#007bff',
+        },
+        layout: { visibility: 'visible' }, // početno vidljiv
+        })
+
+
+        map.on('click', 'bus-stops-layer', (e) => { 
+            if (e.features.length > 0) { 
+                const feature = e.features[0]; 
+                const coordinates = feature.geometry.coordinates.slice(); 
+
+                const stationName = feature.properties.Naziv_stajališta || 'Naziv nije dostupan'; 
+                const stationRoutes = feature.properties.Linije;
+                const stationDesc = feature.properties.Opis;
+
+                const popupContent = `
+                    <strong>${stationName}</strong>
+                    <p>${stationRoutes}</p>
+                    <p>${stationDesc}</p>
+                    `;
+                while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) { 
+                    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360; } 
+                    new maplibregl.Popup() 
+                    .setLngLat(coordinates)
+                    .setHTML(popupContent) 
+                    .addTo(map); 
+            } 
+        });  
+
+        map.on('mouseenter', 'bus-stops-layer', () => { map.getCanvas().style.cursor = 'pointer'; }); 
+        map.on('mouseleave', 'bus-stops-layer', () => { map.getCanvas().style.cursor = ''; });
+    });
+
+});
+</script>
