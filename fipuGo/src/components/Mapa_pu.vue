@@ -42,8 +42,8 @@ onMounted(async ()=>{
         maxZoom: 20,
         hash: true,
         maxBounds: [
-        [13.75, 44.80], // jugozapadni kut (minLng, minLat)
-        [13.95, 44.95]  // sjeveroistočni kut (maxLng, maxLat)
+        [13.75, 44.80], 
+        [13.95, 44.95]  
     ],
     });
 
