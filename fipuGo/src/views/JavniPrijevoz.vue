@@ -17,11 +17,23 @@ const currentComponent = computed(() => {
 
 
 <template>
-  <div>
+  <div class="p-4">
     <select class="border-1 rounded-md p-1 bg-blue-200" v-model="odabranGrad">
         <option value="Pula">Pula</option>
         <option value="Zagreb">Zagreb</option>
     </select>
-    <component :is="currentComponent" />
+
+    <div>
+      <!--WEATHER API CALL-->
+      vrijeme
+    </div>
+    <div class="flex gap-4">
+      <div class="flex-1 p-2 h-[500px]">
+        <component :is="currentComponent" />
+      </div>
+      <div class="flex-1 p-2">
+        <p>Napisi nesto</p>
+      </div>
+    </div>
   </div>
 </template>

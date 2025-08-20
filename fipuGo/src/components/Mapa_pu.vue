@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div id="map" class="h-200 w-300"></div>
+    <div class="h-full w-full flex flex-col gap-2 p-2">
+        <div id="map" class="flex-1 w-full"></div>
 
         <!--Kontrole layera-->
         <div class="mt-2 space-x-2">
