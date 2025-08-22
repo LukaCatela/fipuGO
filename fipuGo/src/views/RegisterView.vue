@@ -20,7 +20,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
     const username = ref("");
     const password = ref("");
     const passwordRepeat = ref("");
-    const lozinkagreska = ref(false);
+    const lozinkagreska = ref({ error: false, message: '' });
 
     // prikaz i skrivanje lozinke
     const showPassword = ref(false);
@@ -28,8 +28,8 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
         showPassword.value = !showPassword.value;
     };
 
-    // registracijski dio
-
+    // registracijski dio stari način i novi
+    /*
     function signup(){
         if(password.value != passwordRepeat.value){
             lozinkagreska.value = true;
@@ -43,5 +43,15 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
             const errorMessages = error.message;
             console.error(erroorCode, errorMessages);
         })
-    }
+    }*/
+    const signup = async () =>{
+        try{
+            const userCredential = await createUserWithEmailAndPassword(auth, username.value, password.value);
+            lozinkagreska.value.error = false;
+            lozinkagreska.value.message = 'Korisnik registriran' + JSON.stringify(userCredential);
+        } catch (error) {
+            lozinkagreska.value.error = true;
+            lozinkagreska.value.message = 'Greška pri registraciji'
+        }    
+    };
 </script>
