@@ -34,6 +34,7 @@ const ulogiraj = async () =>{
         const userCredential = await signInWithEmailAndPassword(auth, username.value, password.value);
         response.value.error = false;
         response.value.message = 'Korisnik je prijavljen'
+        router.push("/")
     } catch (error) {
         response.value.error = true;
         response.value.message = 'Greška pri prijavi: ' + error.message;
