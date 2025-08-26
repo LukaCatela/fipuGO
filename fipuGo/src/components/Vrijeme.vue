@@ -46,13 +46,13 @@ watch(()=>props.grad,()=>{
 // formatiranje datuma 
 
 const formatirajDatum = (datumString) =>{
-    const dani_u_tjednu = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota','Nedjelja'];
+    const dani_u_tjednu = ['Nedjelja', 'Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota'];
     try{
         const datum = new Date(datumString);
-        const imeDana = dani_u_tjednu[datum.getDay()+1];
-        const dan = datum.getDate()+1;
-        const mjesec = datum.getMonth();
-        const godina = datum-getFullYear();
+        const imeDana = dani_u_tjednu[datum.getDay()];
+        const dan = datum.getDate();
+        const mjesec = datum.getMonth()+1;
+        const godina = datum.getFullYear();
         return `${imeDana}, ${dan}.${mjesec}.${godina}.`;
     }catch(e){
         console.error("Greška u formatiranju datuma:", e);
@@ -62,7 +62,8 @@ const formatirajDatum = (datumString) =>{
 </script>
 <template>
     <div class="p-4 m-3 bg-blue-50 rounded-xl shadow-md">
-        <p class="text-lg font-semibold mb-4">Vremenska prognoza za {{ props.grad }}</p>
+        <p class="text-lg font-semibold">Vremenska prognoza za {{ props.grad }}</p>
+        <p class="text-xs mb-2">by OpenWeather</p>
         
         <div v-if="loading">Učitavanje...</div>
         
