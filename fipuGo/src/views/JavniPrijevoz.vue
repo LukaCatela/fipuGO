@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import Mapa_zg from '@/components/Mapa_zg.vue';
 import Mapa_pu from '@/components/Mapa_pu.vue';
+import Vrijeme from '@/components/Vrijeme.vue';
 
 const odabranGrad = ref('Pula') // default-no prikaz Pule
 
@@ -15,7 +16,6 @@ const currentComponent = computed(() => {
 });
 </script>
 
-
 <template>
   <div class="p-4">
     <select class="border-1 rounded-md p-1 bg-blue-200" v-model="odabranGrad">
@@ -25,7 +25,7 @@ const currentComponent = computed(() => {
 
     <div>
       <!--WEATHER API CALL-->
-      vrijeme
+      <Vrijeme :grad="odabranGrad"/>
     </div>
     <div class="flex gap-4">
       <div class="flex-1 p-2 h-[500px]">
