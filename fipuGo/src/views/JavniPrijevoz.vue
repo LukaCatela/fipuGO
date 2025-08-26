@@ -18,20 +18,19 @@ const currentComponent = computed(() => {
 
 <template>
   <div class="p-4">
-    <select class="border-1 rounded-md p-1 bg-blue-200" v-model="odabranGrad">
+    <select class="border-1 rounded-md p-1 bg-blue-100 font-bold" v-model="odabranGrad">
         <option value="Pula">Pula</option>
         <option value="Zagreb">Zagreb</option>
     </select>
-
     <div>
       <!--WEATHER API CALL-->
       <Vrijeme :grad="odabranGrad"/>
     </div>
-    <div class="flex gap-4">
-      <div class="flex-1 p-2 h-[500px]">
+    <div class="flex gap-4 ">
+      <div class="flex-1 p-2 h-[500px] m-3 bg-blue-50 rounded-xl shadow-md">
         <component :is="currentComponent" />
       </div>
-      <div class="flex-1 p-2">
+      <div class="flex-1 p-4 m-3 bg-blue-50 rounded-xl shadow-md">
         <p>Napisi nesto</p>
       </div>
     </div>

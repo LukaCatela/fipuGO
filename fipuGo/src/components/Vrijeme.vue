@@ -8,6 +8,7 @@ const error = ref("");
 
 const props = defineProps({
     grad:{
+        type: String,
         required: true,
     }
         
@@ -42,22 +43,39 @@ watch(()=>props.grad,()=>{
     dohvatiVrime()
 })
 
+// formatiranje datuma 
 
-console.log(new Date().getDate())
+const formatirajDatum = (datumString) =>{
+    const dani_u_tjednu = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota','Nedjelja'];
+    try{
+        const datum = new Date(datumString);
+        const imeDana = dani_u_tjednu[datum.getDay()+1];
+        const dan = datum.getDate()+1;
+        const mjesec = datum.getMonth();
+        const godina = datum-getFullYear();
+        return `${imeDana}, ${dan}.${mjesec}.${godina}.`;
+    }catch(e){
+        console.error("Greška u formatiranju datuma:", e);
+        return datumString.split(' ')[0];
+    }
+};
 </script>
 <template>
-    <div class="p-4 bg-blue-50 rounded-xl shadow-md ">
-        <p>Vrijeme za {{ props.grad }}</p>
+    <div class="p-4 m-3 bg-blue-50 rounded-xl shadow-md">
+        <p class="text-lg font-semibold mb-4">Vremenska prognoza za {{ props.grad }}</p>
+        
         <div v-if="loading">Učitavanje...</div>
+        
         <div v-else-if="error" class="text-red-500">{{ error }}</div>
-        <div v-else-if="vrijeme">
-            <div v-for="(dan,i) in vrijeme.list.filter(el => el.dt_txt.includes('12:00:00'))" :key="i" class="mb-3 p-2 border rounded">
-                <p>📅 {{ dan.dt_txt.split(' ')[0] }}</p>
-                <p>🌡️ Temp: {{ dan.main.temp }}°C</p>
-                <p>☁️ Vrijeme: {{ dan.list[0].weather[0].description }}</p>
-                <p>💨 Vjetar: {{ dan.list[0].wind.speed }} m/s</p>
+        <div v-else-if="vrijeme" class="flex flex-wrap gap-4">
+            <div 
+              v-for="(dan, i) in vrijeme.list.filter(el => el.dt_txt.includes('12:00:00'))" 
+              :key="i" 
+              class="flex-1 min-w-[180px] p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
+                <p class="font-bold text-gray-700">{{ formatirajDatum(dan.dt_txt) }}</p>
+                <p>🌡️ Temp: {{ Math.round(dan.main.temp) }}°C</p>
+                <p class="capitalize">☁️ Vrijeme: {{ dan.weather[0].description }}</p>
             </div>
         </div>
-
     </div>
 </template>
