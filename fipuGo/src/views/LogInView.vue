@@ -31,9 +31,10 @@ function ulogiraj(){
 */
 const ulogiraj = async () =>{
     try{
-        const userCredential = await signInWithEmailAndPassword(auth, username.value, password.value);
+        await signInWithEmailAndPassword(auth, username.value, password.value);
         response.value.error = false;
         response.value.message = 'Korisnik je prijavljen'
+        router.push("/home");
     } catch (error) {
         response.value.error = true;
         response.value.message = 'Greška pri prijavi: ' + error.message;

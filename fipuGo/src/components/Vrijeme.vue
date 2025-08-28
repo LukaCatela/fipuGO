@@ -15,7 +15,7 @@ const props = defineProps({
 })
 const API_KEY = import.meta.env.VITE_WEATHER_API;
 
-//asinkrona funkcija za dohvatit vrime u nekom gradu
+//asinkrona funkcija za dohvatit vrime/meteo u nekom gradu
 async function dohvatiVrime() {
     try{
         loading.value=true;
@@ -46,7 +46,7 @@ watch(()=>props.grad,()=>{
 // formatiranje datuma 
 
 const formatirajDatum = (datumString) =>{
-    const dani_u_tjednu = ['Nedjelja', 'Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota'];
+    const dani_u_tjednu = ['Nedjelja', 'Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota']; // američki zapis tjedna
     try{
         const datum = new Date(datumString);
         const imeDana = dani_u_tjednu[datum.getDay()];

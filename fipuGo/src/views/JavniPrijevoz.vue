@@ -23,7 +23,7 @@ const currentComponent = computed(() => {
         <option value="Zagreb">Zagreb</option>
     </select>
     <div>
-      <!--WEATHER API CALL-->
+      <!--Meteo api call-->
       <Vrijeme :grad="odabranGrad"/>
     </div>
     <div class="flex gap-4 ">
