@@ -2,6 +2,7 @@
 import { initializeApp } from 'firebase/app';
 import 'firebase/auth';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 // ubacuješ svoj ključ koji dobiješ kad kreiraš firebase projekt: apiKey,authDomain...
 const firebaseConfig = {
@@ -17,6 +18,7 @@ const firebaseConfig = {
 // inicializiramo app i autentikaciju
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 // exportamo da možemo koristit u drugim komponentama
-export { app, auth };
+export { app, auth, db };
