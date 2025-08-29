@@ -10,12 +10,12 @@
     <!-- Desna strana: Signup / Login / Logout -->
     <div class="ml-auto">
       <div class="flex items-center space-x-6">
-        <template v-if="!userStore.user">
+        <template v-if="!userStore.user || userStore.user==''">
           <RouterLink to="/register" class="hover:text-amber-200">Signup</RouterLink>
           <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
         </template>
         <template v-else>
-          <span>Dobro došao, {{ userStore.user }}</span>
+          <span>Dobro došao, {{ userStore.user.ime }}</span>
           <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
         </template>
       </div>
