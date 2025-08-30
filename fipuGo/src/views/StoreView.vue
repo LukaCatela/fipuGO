@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { useKartStore } from '@/store/kartStore'
+import { useKartStore } from '@/storekarte/kartStore'
 import { RouterLink } from 'vue-router'
 
 const store = useKartStore()
