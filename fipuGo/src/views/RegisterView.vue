@@ -18,7 +18,7 @@
 <script setup>
 import { ref } from 'vue';
 import { auth, db } from '@/firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import useUserStore from '@/store/user';
 import { doc, setDoc } from 'firebase/firestore';
 import router from '@/router';
@@ -55,6 +55,18 @@ import router from '@/router';
             console.error(erroorCode, errorMessages);
         })
     }*/
+
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).then((result)=>{
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        const user = result.user;
+    }).catch((error)=>{
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        const email = error.customData.email;
+        const credential = GoogleAuthProvider.credentialFromError(error);
+    });
     const signup = async () =>{
         try{
             const userCredential = await createUserWithEmailAndPassword(auth, username.value, password.value);
