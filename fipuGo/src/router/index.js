@@ -40,6 +40,26 @@ const router = createRouter({
             name: 'LogIn',
             component:LogInView,
         },
+        {
+            path: '/store',
+            name: 'Store',
+            component:StoreView,
+        },
+        {
+            path: '/karte',
+            name: 'Karte',
+            component:KarteView,
+        },
+        {
+            path: '/vozniRed',
+            name: 'VozniRed',
+            component:VozniRedView,
+        },
+        {
+            path: '/kart',
+            name: 'Kart',
+            component:KartView,
+        },
     ],
 
 })
