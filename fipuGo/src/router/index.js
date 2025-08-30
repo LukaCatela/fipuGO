@@ -3,7 +3,7 @@ import HomeView from '@/views/HomeView.vue'
 import RegisterView from "@/views/RegisterView.vue";
 import LogInView from "@/views/LogInView.vue";
 import JavniPrijevoz from "@/views/JavniPrijevoz.vue";
-import KarteView from "@/views/KarteView.vue";
+import KupljeneKarteView from "@/views/KupljeneKarteView.vue";
 import StoreView from "@/views/StoreView.vue";
 import VozniRedView from "@/views/VozniRedView.vue";
 import KartView from "@/views/KartView.vue";
@@ -52,7 +52,7 @@ const router = createRouter({
         {
             path: '/karte',
             name: 'Karte',
-            component:KarteView,
+            component:KupljeneKarteView,
         },
         {
             path: '/vozniRed',
