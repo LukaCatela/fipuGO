@@ -35,7 +35,7 @@ karte.forEach(vrsta => count.value[vrsta] = 0)
         }
     }
 
-function dodaj(vrsta){
+function dodaj(){
     karte.forEach(vrsta => {
     const trenutniBroj = count.value[vrsta];
     if (trenutniBroj === 0) return;
