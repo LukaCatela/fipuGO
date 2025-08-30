@@ -1,5 +1,5 @@
 <template>
-  <template v-if="!store.currentUser.value">
+  <template v-if="!user.currentUser.value">
         <div class="flex flex-wrap justify-center gap-6">
             <RouterLink to="/javniprijevoz" class="m-6 flex items-center justify-center w-[300px] h-[200px] bg-gray-800 p-6 rounded-2xl">
                 <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Karta 🗺</h2>
@@ -37,7 +37,7 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import store from '@/store';
+import user from '@/store/user';
 
 </script>
 
