@@ -21,6 +21,7 @@ import { auth, db } from '@/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import useUserStore from '@/store/user';
 import { doc, setDoc } from 'firebase/firestore';
+import router from '@/router';
 
     const userStore = useUserStore();
 
@@ -73,15 +74,14 @@ import { doc, setDoc } from 'firebase/firestore';
 
             //spremamo podatke i u piniu
             userStore.setUser(userData);
-
             lozinkagreska.value.error = false;
             lozinkagreska.value.message = 'Korisnik registriran' + JSON.stringify(userCredential);
+            router.push("/home");
         } catch (error) {
             lozinkagreska.value.error = true;
             lozinkagreska.value.message = 'Greška pri registraciji'
         }    
     };
 
-    
 </script>
 

@@ -15,7 +15,6 @@
           <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
         </template>
         <template v-else>
-          <span>Dobro došao, {{ userStore.user.ime }}</span>
           <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
         </template>
       </div>
@@ -33,7 +32,8 @@ import { auth } from '@/firebase';
 const userStore = useUserStore();
  function logOut() {
       auth.signOut().then(() => {
-        router.push("/login")
+        userStore.clearUser();
+        router.push("/login");
       });
 }
 </script>
