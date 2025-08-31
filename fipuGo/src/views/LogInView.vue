@@ -5,7 +5,7 @@
         <input type="password" v-model="password" placeholder="Upisi lozinku" id="lozinka" class="border-1 rounded-lg my-5 p-1">
         <div class="flex space-x-4 mt-5">
             <button @click="ulogiraj" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition">Log in</button>
-            <button class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition"><img src="/googleicon.ico" alt="Google Icon" class="w-5 h-5" />Google login</button>
+            <button @click="loginGoogle" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition"><img src="/googleicon.ico" alt="Google Icon" class="w-5 h-5" />Google login</button>
             <span :class="response.error ? 'text-rose-600 ' : 'text-emerald-600'">{{ response.message }}</span>
         </div>
     </div>
@@ -14,7 +14,7 @@
 <script setup>
 import { ref } from 'vue';
 import { auth } from '@/firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import router from '@/router';
 
 const username = ref("");
@@ -32,6 +32,7 @@ function ulogiraj(){
     })
 };
 */
+// login sa emailom
 const ulogiraj = async () =>{
     try{
         await signInWithEmailAndPassword(auth, username.value, password.value);
@@ -41,6 +42,24 @@ const ulogiraj = async () =>{
     } catch (error) {
         response.value.error = true;
         response.value.message = 'Greška pri prijavi: ' + error.message;
+    }
+}
+
+//login sa google-om
+const provider = new GoogleAuthProvider();
+
+const loginGoogle = async () => {
+    try{
+        const result = await signInWithPopup(auth, provider);
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        let token = credential ? credential.accessToken : null; // koristimo terminaln da ne pišemo if, jer nekepute more biti i null
+        const user = result.user;
+
+        router.push("/home");
+        console.log(token); 
+        console.log(user);
+    }catch(error){
+        console.error("Došlo je do greške: ", error);
     }
 }
 </script>
