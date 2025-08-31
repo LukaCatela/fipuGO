@@ -3,8 +3,11 @@
     <div class="flex flex-col justify-center items-center my-5">
         <input type="email" v-model="username" placeholder="Upisi email" id="email" class="border-1 rounded-lg p-1">
         <input type="password" v-model="password" placeholder="Upisi lozinku" id="lozinka" class="border-1 rounded-lg my-5 p-1">
-        <button @click="ulogiraj" class="border-1 rounded-lg bg-gray-700 w-s hover:bg-gray-500 p-1">Log in</button>
-        <span :class="response.error ? 'text-rose-600 ' : 'text-emerald-600'">{{ response.message }}</span>
+        <div class="flex space-x-4 mt-5">
+            <button @click="ulogiraj" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition">Log in</button>
+            <button class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition"><img src="/googleicon.ico" alt="Google Icon" class="w-5 h-5" />Google login</button>
+            <span :class="response.error ? 'text-rose-600 ' : 'text-emerald-600'">{{ response.message }}</span>
+        </div>
     </div>
 </template>
 

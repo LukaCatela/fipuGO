@@ -10,8 +10,11 @@
             {{ showPassword ? '👁️' : '🙈' }}
         </button>
         <span v-if="lozinkagreska && password!=passwordRepeat" class="text-red-600">Lozinke se ne podudaraju!</span>
-        <button @click="signup" :disabled="!password || !passwordRepeat || password !== passwordRepeat" class="border-1 rounded-lg bg-gray-700 w-s hover:bg-gray-500 p-1 mt-5
-         disabled:bg-gray-400 disabled:cursor-not-allowed">Sign Up</button>
+        <div class="flex space-x-4 mt-5">
+            <button @click="signup" :disabled="!password || !passwordRepeat || password !== passwordRepeat" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 hover:bg-gray-200 disabled:bg-white disabled:cursor-not-allowed transition">Sign Up</button>
+
+            <button @click="googleSignup" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition"><img src="/googleicon.ico" alt="Google Icon" class="w-5 h-5" /> Sign up with Google</button>
+        </div>
     </div>
 </template>
 
@@ -56,17 +59,7 @@ import router from '@/router';
         })
     }*/
 
-    const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).then((result)=>{
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        const user = result.user;
-    }).catch((error)=>{
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
-    });
+    // obična registracija putem emaila
     const signup = async () =>{
         try{
             const userCredential = await createUserWithEmailAndPassword(auth, username.value, password.value);
@@ -94,6 +87,39 @@ import router from '@/router';
             lozinkagreska.value.message = 'Greška pri registraciji'
         }    
     };
+
+    // registracija pomocu google auth
+
+    const provider = new GoogleAuthProvider();
+    const googleSignup = async () => {
+        try{
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            // moramo provjeriti ako postoji u firestore-u
+            const docRef = doc(db, "users", user.uid);
+            const docSnap = await getDoc(docRef);
+
+            if (!docSnap.exists()) {
+            const userData = {
+                ime: user.displayName?.split(" ")[0] || "",
+                prezime: user.displayName?.split(" ")[1] || "",
+                email: user.email,
+                rola: "korisnik",
+                uid: user.uid,
+                };
+
+            await setDoc(docRef, userData);
+            userStore.setUser(userData);
+
+            }else{
+                userStore.setUser(docSnap.data());
+            }
+            router.push("/home");
+        }catch (error){
+            console.error("Google signup error: ", error)
+        }    
+    };
+    
 
 </script>
 
