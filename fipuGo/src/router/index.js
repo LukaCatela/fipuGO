@@ -7,6 +7,7 @@ import StoreView from "@/views/StoreView.vue";
 import KartView from "@/views/KartView.vue";
 import VozniRedView from "@/views/VozniRedView.vue";
 import KupljeneKarteView from "@/views/KupljeneKarteView.vue";
+import Overview from "@/views/Overview.vue";
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
     routes: [
@@ -63,6 +64,11 @@ const router = createRouter({
             path: '/kart',
             name: 'Kart',
             component:KartView,
+        },
+        {
+            path: '/overview',
+            name: 'Pregled',
+            component: Overview,
         },
     ],
 

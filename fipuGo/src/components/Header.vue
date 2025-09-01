@@ -14,6 +14,9 @@
           <RouterLink to="/register" class="hover:text-amber-200">Signup</RouterLink>
           <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
         </template>
+        <template v-else-if="userRola==='admin'">
+          <RouterLink to="/overview" class="hover:text-amber-200">Pregled</RouterLink>
+        </template>
         <template v-else>
           <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
         </template>
@@ -26,8 +29,9 @@
 <script setup>
 import router from '@/router';
 import useUserStore from '@/store/user';
-import { RouterLink } from 'vue-router'
+import { RouterLink } from 'vue-router';
 import { auth } from '@/firebase';
+import { userRola } from '@/views/Overview.vue';
 
 const userStore = useUserStore();
  function logOut() {
