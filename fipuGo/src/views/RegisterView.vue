@@ -1,22 +1,76 @@
 <template>
-    <h1 class="flex flex-col justify-center items-center my-5"><b>Register</b></h1>
-    <div class="flex flex-col justify-center items-center my-5">
-        <input type="text" v-model="ime" id="ime" placeholder="Upisi ime" class="border-1 rounded-lg mb-3 p-1">
-        <input type="text" v-model="prezime" id="prezime" placeholder="Upisi prezime" class="border-1 rounded-lg mb-3 p-1">
-        <input type="email" v-model="username" placeholder="Upisi email" id="email" class="border-1 rounded-lg p-1 mb-3">
-        <input :type="showPassword ? 'text':'password'"  v-model="password" placeholder="Upisi lozinku" id="lozinka" class="border-1 rounded-lg mb-3 p-1">
-        <input :type="showPassword ? 'text':'password'" v-model="passwordRepeat" placeholder="Ponovno upisi lozinku" id="lozinka_potvrda" class="border-1 rounded-lg p-1">
-        <button type="button" @click="togglePassword">
-            {{ showPassword ? '👁️' : '🙈' }}
-        </button>
-        <span v-if="lozinkagreska && password!=passwordRepeat" class="text-red-600">Lozinke se ne podudaraju!</span>
-        <div class="flex space-x-4 mt-5">
-            <button @click="signup" :disabled="!password || !passwordRepeat || password !== passwordRepeat" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 hover:bg-gray-200 disabled:bg-white disabled:cursor-not-allowed transition">Sign Up</button>
+  <div class="flex flex-col items-center min-h-screen">
+    <h1 class="text-3xl font-bold text-amber-400 mt-10 mb-6">Register</h1>
 
-            <button @click="googleSignup" class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-1 px-2 shadow hover:bg-gray-200 transition"><img src="/googleicon.ico" alt="Google Icon" class="w-5 h-5" /> Sign up with Google</button>
-        </div>
+    <div class="bg-white p-8 rounded-xl shadow-lg w-full max-w-md flex flex-col items-center">
+      <input 
+        type="text" 
+        v-model="ime" 
+        id="ime" 
+        placeholder="Upiši ime" 
+        class="w-full border rounded-lg mb-3 p-2 focus:ring-2 focus:ring-amber-400 focus:outline-none"
+      />
+      <input 
+        type="text" 
+        v-model="prezime" 
+        id="prezime" 
+        placeholder="Upiši prezime" 
+        class="w-full border rounded-lg mb-3 p-2 focus:ring-2 focus:ring-amber-400 focus:outline-none"
+      />
+      <input 
+        type="email" 
+        v-model="username" 
+        placeholder="Upiši email" 
+        id="email" 
+        class="w-full border rounded-lg mb-3 p-2 focus:ring-2 focus:ring-amber-400 focus:outline-none"
+      />
+      <input 
+        :type="showPassword ? 'text':'password'"  
+        v-model="password" 
+        placeholder="Upiši lozinku" 
+        id="lozinka" 
+        class="w-full border rounded-lg mb-3 p-2 focus:ring-2 focus:ring-amber-400 focus:outline-none"
+      />
+      <input 
+        :type="showPassword ? 'text':'password'" 
+        v-model="passwordRepeat" 
+        placeholder="Ponovno upiši lozinku" 
+        id="lozinka_potvrda" 
+        class="w-full border rounded-lg mb-3 p-2 focus:ring-2 focus:ring-amber-400 focus:outline-none"
+      />
+
+      <button 
+        type="button" 
+        @click="togglePassword" 
+        class="text-gray-500 text-sm mb-3 hover:text-amber-400 transition">
+        {{ showPassword ? '👁️ Sakrij lozinke' : '🙈 Prikaži lozinke' }}
+      </button>
+
+      <span 
+        v-if="lozinkagreska && password!=passwordRepeat" 
+        class="text-red-600 mb-3">
+        Lozinke se ne podudaraju!
+      </span>
+
+      <div class="flex space-x-4 mt-4 w-full">
+        <button 
+          @click="signup" 
+          :disabled="!password || !passwordRepeat || password !== passwordRepeat" 
+          class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-amber-400 text-white font-semibold py-2 px-4 hover:bg-amber-500 disabled:bg-gray-300 disabled:cursor-not-allowed transition">
+          Sign Up
+        </button>
+
+        <button 
+          @click="googleSignup" 
+          class="flex-1 flex items-center justify-center gap-2 border rounded-lg bg-white text-amber-400 font-semibold py-2 px-4 shadow hover:bg-gray-100 transition">
+          <img src="/googleicon.ico" alt="Google Icon" class="w-5 h-5" />
+          Sign up with Google
+        </button>
+      </div>
     </div>
+  </div>
 </template>
+
 
 <script setup>
 import { ref } from 'vue';

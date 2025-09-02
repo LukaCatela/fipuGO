@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" class="h-12 w-auto">
+  <!-- Map marker -->
+  <path d="M30 5C20 5 12 13 12 23c0 10 18 30 18 30s18-20 18-30C48 13 40 5 30 5z" fill="#2563eb" stroke="#1e40af" stroke-width="2"></path>
+  <circle cx="30" cy="23" r="6" fill="#93c5fd"></circle>
+  
+  <!-- Text -->
+  <text x="60" y="35" font-family="Poppins, sans-serif" font-size="28" font-weight="bold" fill="url(#grad)">
+    FipuGO
+  </text>
+  
+  <!-- Gradient -->
+  <defs>
+    <linearGradient id="grad" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#2563eb"></stop>
+      <stop offset="100%" stop-color="#fbbf24"></stop>
+    </linearGradient>
+  </defs>
+</svg>

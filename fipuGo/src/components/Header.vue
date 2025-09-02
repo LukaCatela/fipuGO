@@ -1,5 +1,7 @@
 <template>
   <div class="bg-gray-800 p-6 text-amber-400 flex items-center relative">
+    <img src="/logo.svg" alt="FipuGO Logo" class="h-10 w-auto mr-2" />
+
     
     <!-- Navigacijski linkovi u centru -->
     <nav class="absolute left-1/2 transform -translate-x-1/2 flex space-x-6">
