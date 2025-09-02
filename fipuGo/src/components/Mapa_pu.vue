@@ -4,19 +4,31 @@
 
         <!--Kontrole layera-->
         <div class="mt-2 space-x-2">
-            <button @click="sakrijLayer('bus-stops-layer')" class="px-4 py-2 bg-amber-100 text-black font-semibold rounded-lg shadow-mds hover:bg-amber-300">Stanice</button>
-            <button @click="sakrijLayer('bus-route-layer')"   class="px-4 py-2 bg-amber-100 text-black font-semibold rounded-lg shadow-mds hover:bg-amber-300">Linije</button>
+            <button @click="sakrijLayer('bus-stops-layer')" :class="['px-4 py-2 font-semibold rounded-lg shadow-md transition', aktivniSlojevi['bus-stops-layer'] 
+            ? 'bg-amber-400 text-black' 
+            : 'bg-amber-100 text-black hover:bg-amber-300']">Stanice</button>
+            <button @click="sakrijLayer('bus-route-layer')"   :class="[
+          'px-4 py-2 font-semibold rounded-lg shadow-md transition',
+          aktivniSlojevi['bus-route-layer'] 
+            ? 'bg-amber-400 text-black' 
+            : 'bg-amber-100 text-black hover:bg-amber-300'
+        ]">Linije</button>
         </div>
 
     </div>
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 
 let map // globalna varijabla dostupna i unutar toggleLayer
+
+const aktivniSlojevi = ref({
+    'bus-stops-layer': true,
+    'bus-route-layer': true,
+});
 
 function sakrijLayer(layerId) {
   if (!map.getLayer(layerId)) return // ako sloj ne postoji, prekini
@@ -25,8 +37,10 @@ function sakrijLayer(layerId) {
 
   if (visibility === 'none' || !visibility) {
     map.setLayoutProperty(layerId, 'visibility', 'visible')
+    aktivniSlojevi.value[layerId] = true;
   } else {
     map.setLayoutProperty(layerId, 'visibility', 'none')
+    aktivniSlojevi.value[layerId] = false;
   }
 };
 
