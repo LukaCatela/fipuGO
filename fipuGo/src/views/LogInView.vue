@@ -36,6 +36,7 @@
         :class="response.error ? 'text-rose-600' : 'text-emerald-600'">
         {{ response.message }}
       </span>
+      <span>Nemaš korisnički račun? <RouterLink to="/signup" class="text-amber-400 hover:text-amber-200">Registracija</RouterLink></span>
     </div>
   </div>
 </template>
@@ -47,6 +48,8 @@ import { auth,db } from '@/firebase';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import router from '@/router';
+import { RouterLink } from 'vue-router'
+
 
 const username = ref("");
 const password = ref("");

@@ -5,7 +5,7 @@
     </div>
 
     <nav class="flex space-x-6">
-      <RouterLink to="/" class="hover:text-amber-200">Home Page</RouterLink>
+      <RouterLink to="/" class="hover:text-amber-200">Početna stranica</RouterLink>
       <RouterLink to="/javniprijevoz" class="hover:text-amber-200">Javni Prijevoz</RouterLink>
 
       <RouterLink v-if="isAdmin" to="/overview" class="hover:text-amber-200">Pregled</RouterLink> <!--ako je admin onda prikaži stranicu-->
@@ -13,12 +13,12 @@
 
     <div class="flex items-center space-x-6">
       <template v-if="!userStore.user || userStore.user==''">
-        <RouterLink to="/register" class="hover:text-amber-200">Signup</RouterLink>
-        <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
+        <RouterLink to="/register" class="hover:text-amber-200">Registracija</RouterLink>
+        <RouterLink to="/login" class="hover:text-amber-200">Prijava</RouterLink>
       </template>
       <template v-else>
-        <span class="flex items-right justify-end space-x-6">Hello {{ userStore.user?.ime }} ({{ userStore.user?.rola }})</span>
-        <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
+        <span class="flex items-right justify-end space-x-6">Pozdrav, {{ userStore.user?.ime }} ({{ userStore.user?.rola }})</span>
+        <a href="#" @click="logOut" class="hover:text-amber-200">Odjava</a>
       </template>
     </div>
   </div>
