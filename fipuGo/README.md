@@ -25,7 +25,7 @@ Maplibre-gl - interaktivna web karta
 ## Project Setup
 
 ```sh
-git clone
+git clone https://github.com/LukaCatela/fipuGO.git
 cd fipuGo
 npm install
 ```
