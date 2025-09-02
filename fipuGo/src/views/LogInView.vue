@@ -85,18 +85,18 @@ const loginGoogle = async () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         let token = credential ? credential.accessToken : null; // koristimo terminaln da ne pišemo if, jer nekepute more biti i null
         const user = result.user;
-
+        // dohvati usera iz kolekcije users
         const docRef = doc(db, 'users', user.uid);
         const docSnap = await getDoc(docRef);
 
         const imePrezime = user.displayName.split(" ");
-
+        // ako ne postoji user dodaj ga u firestore
         if (!docSnap.exists()) {
           await setDoc(docRef, {
             ime: imePrezime[0] || "",
             prezime: imePrezime[1] || "",
             email: user.email,
-            rola: "user"
+            rola: "korisnik"
           });
         }
 

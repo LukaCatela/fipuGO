@@ -8,7 +8,7 @@
       <RouterLink to="/" class="hover:text-amber-200">Home Page</RouterLink>
       <RouterLink to="/javniprijevoz" class="hover:text-amber-200">Javni Prijevoz</RouterLink>
 
-      <RouterLink v-if="isAdmin" to="/overview" class="hover:text-amber-200">Pregled</RouterLink>
+      <RouterLink v-if="isAdmin" to="/overview" class="hover:text-amber-200">Pregled</RouterLink> <!--ako je admin onda prikaži stranicu-->
     </nav>
 
     <div class="flex items-center space-x-6">
@@ -34,7 +34,9 @@ import { auth } from '@/firebase';
 import { computed } from 'vue';
 
 const userStore = useUserStore();
-const isAdmin = computed(()=> userStore.user?.rola==='admin');
+const isAdmin = computed(()=> userStore.user?.rola==='admin'); // skraćeno da ne pišemo uvjete gore u v-if-u
+
+
 
  function logOut() {
       auth.signOut().then(() => {

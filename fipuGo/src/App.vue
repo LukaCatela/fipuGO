@@ -17,8 +17,9 @@
           if (docSnap.exists()) {
             const data = docSnap.data();
             userStore.setUser(data);
+            console.log("Korisnik postoji u firestore-u");
           } else {
-            console.log('Korisnik ne postoji u Firestore-u');
+            console.warn('Korisnik ne postoji u Firestore-u');
             userStore.clearUser();
           }
       } else {

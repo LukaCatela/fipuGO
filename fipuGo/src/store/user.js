@@ -1,7 +1,7 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
 
-
+// osim da pozivamo i gledamo u firestoru ako postoji user, možemo pomoću pinie spremit trenutnog usera
 const useUserStore = defineStore('user', ()=>{
     const user = ref(null);
 
