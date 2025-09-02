@@ -22,6 +22,10 @@ Firebase Auth – autentikacija korisnika (email/password i Google auth)
 Firebase Firestore – pohrana korisničkih podataka
 
 Maplibre-gl - interaktivna web karta
+
+## Firebase config
+Prije nego pokrenete app trebate napraviti firebase, omogućite auth pomoću email/password i google, a u firestore-u kreirajte novu kolekciju koja se zove 'users' te dodajte polja: ime, prezime, email, rola. svaki user ima svoj 'uid' koji se dodjeluje pri registraciji i loginu.
+
 ## Project Setup
 
 ```sh
