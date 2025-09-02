@@ -74,8 +74,12 @@ const formatirajDatum = (datumString) =>{
               :key="i" 
               class="flex-1 min-w-[180px] p-3 bg-white border border-gray-200 rounded-lg shadow-sm">
                 <p class="font-bold text-gray-700">{{ formatirajDatum(dan.dt_txt) }}</p>
-                <p>🌡️ Temp: {{ Math.round(dan.main.temp) }}°C</p>
-                <p class="capitalize">☁️ Vrijeme: {{ dan.weather[0].description }}</p>
+                <p v-if="Math.round(dan.main.temp)>25"> 🔥 Temp: {{ Math.round(dan.main.temp) }}°C</p>
+                <p v-else="Math.round(dan.main.temp)>28">❄️ Temp: {{ Math.round(dan.main.temp) }}°C</p>
+                <div class="flex flex-row items-center">
+                    <img :src="`https://openweathermap.org/img/wn/${dan.weather[0].icon}@2x.png`" :alt="dan.weather[0].description" class="w-10 h-10"/>
+                    <p class="capitalize">{{ dan.weather[0].description }}</p>
+                </div>
             </div>
         </div>
     </div>
