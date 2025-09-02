@@ -1,18 +1,32 @@
 # fipuGo
+## Opis
+FipuGO je web aplikacija za pregled javnog prijevoza i upravljanje kartama.
+Omogućuje korisnicima prijavu preko emaila ili Google računa, a administratori imaju dodatne funkcionalnosti poput pregleda svih korisnika.
 
-This template should help get you started developing with Vue 3 in Vite.
+Aplikacija koristi Firebase Authentication za prijavu i registraciju korisnika te Firestore za pohranu korisničkih podataka, uključujući ime, prezime, email....
 
-## Recommended IDE Setup
+Korisnik bez logiranja može pregledati vozni red te interaktivnu kartu javnog gradskog prijevoza, a ako se ulogira može kupovat karte.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Customize configuration
+### Za izradu projekta smo koristili:
+Vue 3 – frontend framework
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Pinia – state management
 
+Vue Router – navigacija između stranica
+
+Tailwind CSS – still
+
+Firebase Auth – autentikacija korisnika (email/password i Google auth)
+
+Firebase Firestore – pohrana korisničkih podataka
+
+Maplibre-gl - interaktivna web karta
 ## Project Setup
 
 ```sh
+git clone
+cd fipuGo
 npm install
 ```
 
@@ -21,9 +35,4 @@ npm install
 ```sh
 npm run dev
 ```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
+app ce se otvoriti na [localhost](http://localhost:5173)
