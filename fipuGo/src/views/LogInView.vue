@@ -43,7 +43,8 @@
 
 <script setup>
 import { ref } from 'vue';
-import { auth } from '@/firebase';
+import { auth,db } from '@/firebase';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import router from '@/router';
 
@@ -84,6 +85,20 @@ const loginGoogle = async () => {
         const credential = GoogleAuthProvider.credentialFromResult(result);
         let token = credential ? credential.accessToken : null; // koristimo terminaln da ne pišemo if, jer nekepute more biti i null
         const user = result.user;
+
+        const docRef = doc(db, 'users', user.uid);
+        const docSnap = await getDoc(docRef);
+
+        const imePrezime = user.displayName.split(" ");
+
+        if (!docSnap.exists()) {
+          await setDoc(docRef, {
+            ime: imePrezime[0] || "",
+            prezime: imePrezime[1] || "",
+            email: user.email,
+            rola: "user"
+          });
+        }
 
         router.push("/home");
         console.log(token); 

@@ -2,7 +2,9 @@
     Admin page
 </template>
 
-<script> // ako stavis setup onda nece radit export
+<script setup> // ako stavis setup onda nece radit export
+
+// OverView.vue
 import { ref, onMounted} from 'vue';
 import { auth,db } from '@/firebase';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -30,5 +32,4 @@ onMounted(()=>{
     });
 });
 
-export { userRola };
 </script>

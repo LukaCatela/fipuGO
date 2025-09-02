@@ -1,41 +1,41 @@
 <template>
-  <div class="bg-gray-800 p-6 text-amber-400 flex items-center relative">
-    <img src="/logo.svg" alt="FipuGO Logo" class="h-10 w-auto mr-2" />
-
-    
-    <!-- Navigacijski linkovi u centru -->
-    <nav class="absolute left-1/2 transform -translate-x-1/2 flex space-x-6">
-      <RouterLink to="/" class="hover:text-amber-200">Home Page</RouterLink>
-      <RouterLink to="/javniprijevoz" class="hover:text-amber-200">Javni Prijevoz</RouterLink>
-    </nav>
-
-    <!-- Desna strana: Signup / Login / Logout -->
-    <div class="ml-auto">
-      <div class="flex items-center space-x-6">
-        <template v-if="!userStore.user || userStore.user==''">
-          <RouterLink to="/register" class="hover:text-amber-200">Signup</RouterLink>
-          <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
-        </template>
-        <template v-else-if="userRola==='admin'">
-          <RouterLink to="/overview" class="hover:text-amber-200">Pregled</RouterLink>
-        </template>
-        <template v-else>
-          <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
-        </template>
-      </div>
+  <div class="bg-gray-800 p-6 text-amber-400 flex items-center justify-between">
+    <div class="flex items-center space-x-2">
+      <img src="/logo.svg" alt="FipuGO Logo" class="h-10 w-auto" />
     </div>
 
+    <nav class="flex space-x-6">
+      <RouterLink to="/" class="hover:text-amber-200">Home Page</RouterLink>
+      <RouterLink to="/javniprijevoz" class="hover:text-amber-200">Javni Prijevoz</RouterLink>
+
+      <RouterLink v-if="isAdmin" to="/overview" class="hover:text-amber-200">Pregled</RouterLink>
+    </nav>
+
+    <div class="flex items-center space-x-6">
+      <template v-if="!userStore.user || userStore.user==''">
+        <RouterLink to="/register" class="hover:text-amber-200">Signup</RouterLink>
+        <RouterLink to="/login" class="hover:text-amber-200">Login</RouterLink>
+      </template>
+      <template v-else>
+        <span class="flex items-right justify-end space-x-6">Hello {{ userStore.user?.ime }} ({{ userStore.user?.rola }})</span>
+        <a href="#" @click="logOut" class="hover:text-amber-200">Logout</a>
+      </template>
+    </div>
   </div>
 </template>
 
+
 <script setup>
+
 import router from '@/router';
 import useUserStore from '@/store/user';
 import { RouterLink } from 'vue-router';
 import { auth } from '@/firebase';
-import { userRola } from '@/views/Overview.vue';
+import { computed } from 'vue';
 
 const userStore = useUserStore();
+const isAdmin = computed(()=> userStore.user?.rola==='admin');
+
  function logOut() {
       auth.signOut().then(() => {
         userStore.clearUser();

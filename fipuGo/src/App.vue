@@ -2,18 +2,29 @@
     import Footer from '@/components/Footer.vue';
     import Header from '@/components/Header.vue'
     import BodyFipuGo from '@/components/BodyFipuGo.vue';
-    import { auth } from '@/firebase';
+    import { auth, db } from '@/firebase';
+    import { doc, getDoc } from 'firebase/firestore';
     import useUserStore from '@/store/user';
+    import { onMounted } from 'vue';
 
-    const useStore = useUserStore();
-    auth.onAuthStateChanged((user) =>{
-      if(user){
-        console.log('***',user.email);
-        useStore.setUser(user.email);
-      }else{
-        console.log('*** No user')
-        useStore.clearUser();
+    const userStore = useUserStore();
+    onMounted(()=>{
+      auth.onAuthStateChanged(async (user) =>{
+        if(user){
+          const docRef = doc(db, 'users', user.uid);
+          const docSnap = await getDoc(docRef);
+
+          if (docSnap.exists()) {
+            const data = docSnap.data();
+            userStore.setUser(data);
+          } else {
+            console.log('Korisnik ne postoji u Firestore-u');
+            userStore.clearUser();
+          }
+      } else {
+        userStore.clearUser();
       }
+      })
     })
 
 </script>
