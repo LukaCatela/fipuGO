@@ -4,7 +4,7 @@
         <ul>
             <li v-for="(item, index) in store.kosarica" :key="index">{{ item }}</li>
         </ul>
-<h2 class="text-xl font-bold">kolicina</h2>
+        <h2 class="text-xl font-bold">kolicina</h2>
         <ul>
             <li v-for="(kolicina, vrsta) in store.karta" :key="vrsta">{{ vrsta }}: {{ kolicina }}</li>
         </ul>

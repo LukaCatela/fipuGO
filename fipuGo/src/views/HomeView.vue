@@ -19,15 +19,15 @@
             </RouterLink>
 
             <RouterLink to="/karte" class="m-6 flex items-center justify-center w-[300px] h-[200px] bg-gray-800 p-6  rounded-2xl">
-                <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Vaše karte 🎫</h2>
+                <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Vaše karte</h2>
             </RouterLink>
 
             <RouterLink to="/javniprijevoz" class="m-6 flex items-center justify-center w-[300px] h-[200px] bg-gray-800 p-6  rounded-2xl">
-                <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Karta 🗺</h2>
+                <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Mapa buseva</h2>
             </RouterLink>
 
             <RouterLink to="/vozniRed" class="m-6 flex items-center justify-center w-[300px] h-[200px] bg-gray-800 p-6  rounded-2xl">
-                <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Vozni red 🚌</h2>
+                <h2 class="text-center text-amber-400 text-xl font-bold color-white" >Vozni red</h2>
             </RouterLink>  
 
             
