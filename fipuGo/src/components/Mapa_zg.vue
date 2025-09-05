@@ -46,7 +46,6 @@ onMounted(async ()=>{
         center: [15.982, 45.805], // Koordinate centra Zagreba
         zoom: 13,
         maxZoom: 20,
-        hash: true,
         maxBounds: [
             [15.76, 45.62],  // Donji lijevi kut
             [16.25, 45.95]   // Gornji desni kut

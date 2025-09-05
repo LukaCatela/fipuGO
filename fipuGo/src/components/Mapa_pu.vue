@@ -54,7 +54,6 @@ onMounted(async ()=>{
         center: [13.848, 44.867], // koordinate centra mape
         zoom: 13,
         maxZoom: 20,
-        hash: true,
         maxBounds: [
         [13.75, 44.80], 
         [13.95, 44.95]  
