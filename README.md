@@ -1,4 +1,18 @@
 # fipuGo
+članovi: Luka Catela i Mateo Šegon
+[Fakultet informatike u Puli](https://fipu.unipu.hr/)
+Kolegij: [Programsko inženjerstvo](http://ntankovic.unipu.hr/pi)
+Mentor: doc. dr. sc. [Nikola Tanković](http://ntankovic.unipu.hr/pi)
+Prototip Figma: 
+Javna aplikacija za testiranje:
+
+#### logiranje za korisnika 
+username: user@mail.com
+password: fipugo123
+
+#### logiranje za admina
+username: bob.ros@mail.com
+password: fipu123456
 ## Opis
 FipuGO je web aplikacija za pregled javnog prijevoza i upravljanje kartama.
 Omogućuje korisnicima prijavu preko emaila ili Google računa, a administratori imaju dodatne funkcionalnosti poput pregleda svih korisnika.
