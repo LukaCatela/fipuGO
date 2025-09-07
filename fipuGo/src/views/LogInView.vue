@@ -49,6 +49,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import router from '@/router';
 import { RouterLink } from 'vue-router'
+import { useKartStore } from '@/store/kartStore';
 
 
 const username = ref("");
@@ -72,6 +73,10 @@ const ulogiraj = async () =>{
         await signInWithEmailAndPassword(auth, username.value, password.value);
         response.value.error = false;
         response.value.message = 'Korisnik je prijavljen'
+
+      const kartStore = useKartStore();
+      kartStore.pratiKosaricu();
+
         router.push("/home");
     } catch (error) {
         response.value.error = true;
