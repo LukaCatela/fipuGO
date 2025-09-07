@@ -5,7 +5,7 @@
 
 Kolegij: [Programsko inženjerstvo](http://ntankovic.unipu.hr/pi)
 
-Mentor: doc. dr. sc. [Nikola Tanković](http://ntankovic.unipu.hr/pi)
+Mentor: doc. dr. sc. [Nikola Tanković](http://ntankovic.unipu.hr)
 
 Prototip Figma: 
 
