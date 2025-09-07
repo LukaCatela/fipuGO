@@ -22,7 +22,7 @@
                 <div class="text-black m-5">
                     <ul>
                         <li v-for="(kolicina, vrsta) in store.karta" :key="vrsta" class="flex items-center mb-2 gap-5">
-                            <p>{{ vrsta }} - {{ store.karte.find(k => k.vrsta === vrsta).cijena }}€ x{{ kolicina }}</p>
+                            <p>{{ vrsta }} - {{ store.karte.find(k => k.vrsta === vrsta)?.cijena }}€ x{{ kolicina }}</p>
                             <div class="flex gap-2">
                                 <button @click="store.obrisiJednu(vrsta)" class="bg-red-700 text-white w-[20px] h-[20px] rounded-lg flex items-center justify-center cursor-pointer">-</button>
                                 <button @click="store.obrisiSve(vrsta)" class="bg-red-700 text-white w-[20px] h-[20px] font-bold rounded-lg flex items-center justify-center cursor-pointer">X</button>
