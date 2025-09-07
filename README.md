@@ -1,9 +1,14 @@
 # fipuGo
 članovi: Luka Catela i Mateo Šegon
+
 [Fakultet informatike u Puli](https://fipu.unipu.hr/)
+
 Kolegij: [Programsko inženjerstvo](http://ntankovic.unipu.hr/pi)
+
 Mentor: doc. dr. sc. [Nikola Tanković](http://ntankovic.unipu.hr/pi)
+
 Prototip Figma: 
+
 Javna aplikacija za testiranje:
 
 #### logiranje za korisnika 
