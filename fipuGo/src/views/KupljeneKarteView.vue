@@ -7,7 +7,7 @@
     </div>
 
     <ul v-else class="flex flex-col gap-4">
-      <li v-for="(karta, index) in karte" :key="karta.KartaID || index" class="bg-gray-200 p-4 rounded-xl mt-5 flex justify-between items-center">
+      <li v-for="(karta, index) in karte" :key="karta.KartaID || index" class="bg-blue-100 p-4 rounded-xl mt-5 flex justify-between items-center">
         
       <div class="flex flex-col">  
         <p class="font-bold">{{ karta.vrsta }}</p>

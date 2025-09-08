@@ -7,16 +7,16 @@
                 <h2 class="text-left text-amber-400 text-xl font-bold">{{ karta.vrsta }}</h2>
                 <p class="text-white">Cijena: {{ karta.cijena }}€</p>
                 <div class="flex items-center absolute bottom-5 right-5">
-    <!--plus--> <button @click="store.minus(karta.vrsta)" class="px-3 m-1 bg-gray-500 text-white rounded-lg cursor-pointer">-</button>
+    <!--plus--> <button @click="store.minus(karta.vrsta)" class="px-3 m-1 bg-gray-500 text-white rounded-lg cursor-pointer hover:bg-red-500">-</button>
                     <div class="text-amber-400 px-4">{{ store.count[karta.vrsta] }}</div>
-    <!--minus--> <button @click="store.plus(karta.vrsta)" class="px-4 m-1 bg-gray-500 text-white rounded-lg cursor-pointer">+</button>
+    <!--minus--> <button @click="store.plus(karta.vrsta)" class="px-4 m-1 bg-gray-500 text-white rounded-lg cursor-pointer hover:bg-green-500">+</button>
                 </div>
             </div>
         </div>
 
         
 
-            <div class="bg-gray-300 w-1/3 h-[300px] rounded-xl relative p-5">
+            <div class="bg-blue-100 w-1/3 h-[300px] rounded-xl relative p-5 m-4">
                 <div class="text-black m-5">
                     <ul>
                         <li v-for="(kolicina, vrsta) in store.karta" :key="vrsta" class="flex items-center mb-2 gap-5">
