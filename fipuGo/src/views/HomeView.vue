@@ -37,7 +37,7 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import useUserStore from '@/store/user';
+import { useUserStore } from '@/store/user';
 
 const userStore = useUserStore()
 </script>

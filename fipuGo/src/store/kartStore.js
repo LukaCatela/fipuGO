@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import { db } from '@/firebase'
 import { collection, doc, getDoc, deleteDoc, addDoc, onSnapshot, setDoc, updateDoc, serverTimestamp} from 'firebase/firestore'
-import  useUserStore  from '@/store/user'
+import  { useUserStore }  from '@/store/user'
 
 
 export const useKartStore = defineStore('kart', () => {

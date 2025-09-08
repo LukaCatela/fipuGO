@@ -76,7 +76,7 @@
 import { ref } from 'vue';
 import { auth, db } from '@/firebase';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import useUserStore from '@/store/user';
+import { useUserStore } from '@/store/user';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import router from '@/router';
 

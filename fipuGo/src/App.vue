@@ -4,7 +4,7 @@
     import BodyFipuGo from '@/components/BodyFipuGo.vue';
     import { auth, db } from '@/firebase';
     import { doc, getDoc } from 'firebase/firestore';
-    import useUserStore from '@/store/user';
+    import { useUserStore } from '@/store/user';
     import { onMounted } from 'vue';
 
     const userStore = useUserStore();

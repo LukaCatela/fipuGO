@@ -50,7 +50,7 @@ import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 
 import router from '@/router';
 import { RouterLink } from 'vue-router'
 import { useKartStore } from '@/store/kartStore';
-import  useUserStore  from '@/store/user'
+import  { useUserStore }  from '@/store/user'
 
 const username = ref("");
 const password = ref("");

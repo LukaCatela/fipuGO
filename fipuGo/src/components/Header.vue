@@ -12,12 +12,12 @@
     </nav>
 
     <div class="flex items-center space-x-6">
-      <template v-if="!userStore.user || userStore.user==''">
+      <template v-if="!userStore.user">
         <RouterLink to="/register" class="hover:text-amber-200">Registracija</RouterLink>
         <RouterLink to="/login" class="hover:text-amber-200">Prijava</RouterLink>
       </template>
       <template v-else>
-        <span class="flex items-right justify-end space-x-6">Pozdrav, {{ userStore.user?.ime }} ({{ userStore.user?.rola }})</span>
+        <span class="flex items-right justify-end space-x-6">Pozdrav, {{ userStore.user?.ime || userStore.user?.displayName || "Korisnik" }} ({{ userStore.user?.rola }})</span>
         <a href="#" @click="logOut" class="hover:text-amber-200">Odjava</a>
       </template>
     </div>
@@ -28,7 +28,7 @@
 <script setup>
 
 import router from '@/router';
-import useUserStore from '@/store/user';
+import { useUserStore } from '@/store/user';
 import { RouterLink } from 'vue-router';
 import { auth } from '@/firebase';
 import { computed } from 'vue';
@@ -37,7 +37,7 @@ const userStore = useUserStore();
 const isAdmin = computed(()=> userStore.user?.rola==='admin'); // skraćeno da ne pišemo uvjete gore u v-if-u
 
 
-
+console.log(userStore.user?.ime)
  function logOut() {
       auth.signOut().then(() => {
         userStore.clearUser();
