@@ -50,7 +50,7 @@ import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 
 import router from '@/router';
 import { RouterLink } from 'vue-router'
 import { useKartStore } from '@/store/kartStore';
-
+import  useUserStore  from '@/store/user'
 
 const username = ref("");
 const password = ref("");
@@ -70,12 +70,17 @@ function ulogiraj(){
 // login sa emailom
 const ulogiraj = async () =>{
     try{
-        await signInWithEmailAndPassword(auth, username.value, password.value);
+        const userPodaci = await signInWithEmailAndPassword(auth, username.value, password.value);
+        const user = userPodaci.user;
+
+        const userStore = useUserStore();
+        userStore.setUser(user);
+
+        const kartStore = useKartStore()
+        kartStore.pratiKosaricu()
+
         response.value.error = false;
         response.value.message = 'Korisnik je prijavljen'
-
-      const kartStore = useKartStore();
-      kartStore.pratiKosaricu();
 
         router.push("/home");
     } catch (error) {
@@ -108,6 +113,12 @@ const loginGoogle = async () => {
           });
         }
 
+        const userStore = useUserStore();
+        userStore.setUser(user);
+
+        const kartStore = useKartStore()
+        kartStore.pratiKosaricu()
+
         router.push("/home");
         console.log(token); 
         console.log(user);
@@ -115,4 +126,6 @@ const loginGoogle = async () => {
         console.error("Došlo je do greške: ", error);
     }
 }
+
+
 </script>

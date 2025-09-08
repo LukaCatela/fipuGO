@@ -14,15 +14,13 @@
             </div>
         </div>
 
-        <button @click="store.dodaj()" class="px-4 absolute bottom-5 right-5 bg-green-500 text-white rounded-lg cursor-pointer">Dodaj</button>
+        
 
-        <RouterLink to="/kart" class="px-4 py-2 absolute top-5 right-5 bg-blue-500 text-white rounded-lg">Idi u kosaricu</RouterLink>
-
-            <div class="bg-gray-300 rouded-lg w-1/3">
+            <div class="bg-gray-300 w-1/3 h-[300px] rounded-xl relative p-5">
                 <div class="text-black m-5">
                     <ul>
                         <li v-for="(kolicina, vrsta) in store.karta" :key="vrsta" class="flex items-center mb-2 gap-5">
-                            <p>{{ vrsta }} - {{ store.karte.find(k => k.vrsta === vrsta)?.cijena }}€ x{{ kolicina }}</p>
+                            <p>{{ vrsta }} - {{ store.karte.find(k => k.vrsta === vrsta)?.cijena }}€ x{{ kolicina }} = {{ store.karte.find(k => k.vrsta === vrsta)?.cijena * kolicina }}€</p>
                             <div class="flex gap-2">
                                 <button @click="store.obrisiJednu(vrsta)" class="bg-red-700 text-white w-[20px] h-[20px] rounded-lg flex items-center justify-center cursor-pointer">-</button>
                                 <button @click="store.obrisiSve(vrsta)" class="bg-red-700 text-white w-[20px] h-[20px] font-bold rounded-lg flex items-center justify-center cursor-pointer">X</button>
@@ -30,6 +28,11 @@
                         </li>
                     </ul>
                 </div>
+                <div class="flex justify-between mt-2">
+                    <button @click="store.dodaj()" class="px-3 absolute bottom-5 right-5 bg-green-500 text-white rounded-lg cursor-pointer hover:bg-green-700">Dodaj</button>
+                    <RouterLink to="/kart" class="px-3  absolute bottom-5 left-5 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-700">Idi u kosaricu</RouterLink>
+                </div>
+                <div>Bodovi: </div>
             </div>
     </div>
 
