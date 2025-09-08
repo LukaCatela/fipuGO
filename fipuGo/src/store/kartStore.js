@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { db } from '@/firebase'
 import { collection, doc, getDoc, deleteDoc, addDoc, onSnapshot, setDoc, updateDoc, serverTimestamp} from 'firebase/firestore'
 import  { useUserStore }  from '@/store/user'
-
+import { v4 as uuidv4 } from 'uuid';
 
 export const useKartStore = defineStore('kart', () => {
     const karte = [
@@ -114,31 +114,24 @@ export const useKartStore = defineStore('kart', () => {
     const useKarteColl = karteColl()
     if (!useKarteColl) return
 
-  const ukupno = Object.entries(karta.value).reduce((suma, [vrsta, kolicina]) => {
-        const cijena = karte.find(k => k.vrsta === vrsta)?.cijena || 0 
-        return suma + cijena * kolicina
-      }, 0)
-
-    if (ukupno === 0)  return console.log('Kosarica je prazna')
-
-    const kupovineColl = collection(db, 'users', userID, 'kupovine')
-    await addDoc(kupovineColl, {
-      items: kosarica.value.map(k => ({
-        vrsta: k.vrsta,
-        cijena: k.cijena,
-        kolicina: k.kolicina
-      })),
-      ukupno,
-      kreirano: serverTimestamp()
-    })
+    const KupljeneKarte = collection(db, 'users', userID, 'KupljeneKarte')
 
     for(const k of karte){
-      if(karta.value[k.vrsta]){
-        await deleteDoc(doc(useKarteColl, k.vrsta))
+      const kolicina = karta.value[k.vrsta] || 0
+      if(kolicina === 0) continue
+    
+    for(let i = 0; i < kolicina; i++){
+      await addDoc(KupljeneKarte, {
+          vrsta: k.vrsta,
+          cijena: k.cijena,
+          KartaID: uuidv4(),
+          kreirano: serverTimestamp()
+        })
       }
+    
+        await deleteDoc(doc(useKarteColl, k.vrsta))
     }
   }
-
 
 // funkcija koja prati kad je user ulogiran
   function pratiKosaricu() {

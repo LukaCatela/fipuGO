@@ -32,7 +32,7 @@
                     <button @click="store.dodaj()" class="px-3 absolute bottom-5 right-5 bg-green-500 text-white rounded-lg cursor-pointer hover:bg-green-700">Dodaj</button>
                     <RouterLink to="/kart" class="px-3  absolute bottom-5 left-5 bg-blue-500 text-white rounded-lg cursor-pointer hover:bg-blue-700">Idi u kosaricu</RouterLink>
                 </div>
-                <div>Bodovi: </div>
+                <div>Bodovi:  </div>
             </div>
     </div>
 
