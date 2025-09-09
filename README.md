@@ -9,7 +9,7 @@ Mentor: doc. dr. sc. [Nikola Tanković](http://ntankovic.unipu.hr)
 
 Prototip Figma: 
 
-Javna aplikacija za testiranje:
+Javna aplikacija za testiranje: [FipuGo](https://fipu-go.vercel.app/)
 
 #### logiranje za korisnika 
 username: user@mail.com
