@@ -7,7 +7,7 @@ Kolegij: [Programsko inženjerstvo](http://ntankovic.unipu.hr/pi)
 
 Mentor: doc. dr. sc. [Nikola Tanković](http://ntankovic.unipu.hr)
 
-Prototip Figma: 
+Prototip Figma: [Prototip](https://www.figma.com/proto/wDd8liziKvA96LzGfssnLP/FIPUGO?node-id=0-1&t=Yg7RlesSxVStzVuT-1)
 
 Javna aplikacija za testiranje: [FipuGo](https://fipu-go.vercel.app/)
 
